@@ -33,8 +33,7 @@ public class QuickSort {
 
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		int[] nums = {5,4,3,66,2,1};
+		int[] nums = {6,5,7,3,2,1,4,9,12,2};
 		new QuickSort().quickSort(nums);
 //		new QuickSort().quickSort(nums, 0, nums.length);
 		for (int num : nums) {System.out.print(num + " ");}

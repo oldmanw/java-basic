@@ -31,7 +31,8 @@ public class classTest {
 
             //通过反射为属性赋值
             //实例
-            PojoClass pojoClass = (PojoClass) c.newInstance();
+//            PojoClass pojoClass = (PojoClass) c.newInstance();
+            PojoClass pojoClass = (PojoClass) Class.forName(c.getName()).newInstance();
             Field sexField = c.getDeclaredField("sex");
             sexField.setAccessible(true);
             String sex = (String) sexField.get(pojoClass);

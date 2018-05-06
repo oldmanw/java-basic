@@ -10,7 +10,8 @@ public class Factory extends Afactory {
     public <T extends Iproduct> T create(Class<T> c) {
         Product product = null;
         try {
-            product = (Product) Class.forName(c.getName()).newInstance();
+//            product = (Product) Class.forName(c.getName()).newInstance();
+            product = (Product) c.newInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }

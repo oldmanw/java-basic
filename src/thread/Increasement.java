@@ -1,47 +1,54 @@
 package thread;
 
 public class Increasement {
-	
-	static int num = 0;
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		for (int j = 0; j < 10; j++) {
-//			new Thread(new Runnable() {
-//				public void run() {
-//					System.out.println(Thread.currentThread().getName() + " started!");
-//					try {
-//						for (int i = 0; i < 100; i++) {
-//							num++;
-//							Thread.sleep(1);
-//						}
-//					} catch(InterruptedException e) {
-//						e.printStackTrace();
-//					}
-//				}
-//			}).start();
+    private int i;
 
-			//lambda expression
-			new Thread( () -> {
-				System.out.println(Thread.currentThread().getName() + " started!");
-					try {
-						for (int i = 0; i < 100; i++) {
-							num++;
-							Thread.sleep(1);
-						}
-					} catch(InterruptedException e) {
-						e.printStackTrace();
-					}
-			}).start();
-		}
-		
-		try {
-			Thread.sleep(1000);
-			System.out.println(num);
-		} catch(InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-	}
+    public void increase() {
+        i++;
+    }
+
+    public int getI() {
+        return i;
+    }
+
+    public static void test(int threadNum, int loopTimes) {
+        Increasement increasement = new Increasement();
+
+        Thread[] threads = new Thread[threadNum];
+
+        for (int i = 0; i < threads.length; i++) {
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    for (int i = 0; i < loopTimes; i++) {
+                        increasement.increase();
+                    }
+                }
+            });
+            threads[i] = t;
+            t.start();
+        }
+
+        //main线程等待其他线程都执行完成
+        for (Thread t : threads) {
+            try {
+                t.join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        System.out.println(threadNum + " threads, result of " + loopTimes + " loops is " + increasement.getI());
+    }
+
+    public static void main(String[] args) {
+        test(20, 1);
+        test(20, 10);
+        test(20, 100);
+        test(20, 1000);
+        test(20, 10000);
+        test(20, 100000);
+    }
 
 }

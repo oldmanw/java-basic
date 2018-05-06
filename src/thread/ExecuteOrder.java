@@ -16,43 +16,43 @@ public class ExecuteOrder {
             System.out.println("t1 is running!")
     );
 
-    private Thread t2 = new Thread(() ->
-            System.out.println("t2 is running!")
-    );
-
-    private Thread t3 = new Thread(() ->
-            System.out.println("t3 is running!")
-    );
-
-//    private Thread t2 = new Thread(() ->{
-//        try {
-//            t1.join();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        System.out.println("t2 is running!");
-//    });
+//    private Thread t2 = new Thread(() ->
+//            System.out.println("t2 is running!")
+//    );
 //
-//    private Thread t3 = new Thread(() ->{
-//        try {
-//            t2.join();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        System.out.println("t3 is running!");
-//    });
+//    private Thread t3 = new Thread(() ->
+//            System.out.println("t3 is running!")
+//    );
+
+    private Thread t2 = new Thread(() ->{
+        try {
+            t1.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("t2 is running!");
+    });
+
+    private Thread t3 = new Thread(() ->{
+        try {
+            t2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("t3 is running!");
+    });
 
     public static void main(String[] args) {
         ExecuteOrder executeOrder = new ExecuteOrder();
         //使用join
-//        executeOrder.t2.start();
-//        executeOrder.t3.start();
-//        executeOrder.t1.start();
+        executeOrder.t2.start();
+        executeOrder.t3.start();
+        executeOrder.t1.start();
         //使用newSingleThreadExecutor
-        ExecutorService service = Executors.newSingleThreadExecutor();
-        service.execute(executeOrder.t1);
-        service.execute(executeOrder.t2);
-        service.execute(executeOrder.t3);
+//        ExecutorService service = Executors.newSingleThreadExecutor();
+//        service.execute(executeOrder.t1);
+//        service.execute(executeOrder.t2);
+//        service.execute(executeOrder.t3);
     }
 
 }

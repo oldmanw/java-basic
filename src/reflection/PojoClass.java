@@ -40,7 +40,7 @@ public class PojoClass {
         this.sex = sex;
     }
 
-    private void shit() {
-
+    private void shit(Integer num) {
+        System.out.println("shit Number " + num + " stinks!");
     }
 }

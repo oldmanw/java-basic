@@ -1,7 +1,5 @@
 package reflection;
 
-import annotations.Idiot;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -32,6 +30,7 @@ public class classTest {
             System.out.print('\n');
 
             //通过反射为属性赋值
+            //实例
             PojoClass pojoClass = (PojoClass) c.newInstance();
             Field sexField = c.getDeclaredField("sex");
             sexField.setAccessible(true);
@@ -45,6 +44,11 @@ public class classTest {
             Annotation[] annotations = c.getAnnotations();
             for (Annotation annotation : annotations) System.out.print(annotation.toString());
             System.out.print('\n');
+
+            //通过反射执行private方法
+            Method prMethod1 = c.getDeclaredMethod("shit", Integer.class);
+            prMethod1.setAccessible(true);
+            prMethod1.invoke(pojoClass, 1);
         } catch (Exception e) {
             e.printStackTrace();
         }

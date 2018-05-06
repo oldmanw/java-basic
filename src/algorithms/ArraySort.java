@@ -180,10 +180,10 @@ public class ArraySort {
     }
 
     /**
-     * 快速排序的非递归版本,当recursive为false时执行
+     * 快速排序的非递归版本
      * @param nums 数组
      */
-    public static void nonRecQuikSort(Comparable[] nums) {
+    public static void nonRecQuickSort(Comparable[] nums) {
             quickSortNonRecursiveHelper(nums, 0, nums.length - 1);
     }
 
@@ -209,7 +209,7 @@ public class ArraySort {
 
     public static void main(String[] args) {
         Integer[] nums = {6,5,7,3,2,1,4,9,12,2};
-        ArraySort.nonRecQuikSort(nums);
+        ArraySort.nonRecQuickSort(nums);
         for (int num : nums) System.out.print(num + " ");
     }
 

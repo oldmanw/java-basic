@@ -22,13 +22,7 @@ public class TrappingRainWaterII407 {
 		int res = 0;
 		//int min = Integer.MIN_VALUE;
 		//create a priority queue for comparing heights of the nodes
-		PriorityQueue<Node> queue = new PriorityQueue<>(new Comparator<Node>() {
-			@Override
-			public int compare(Node n1, Node n2) {
-				return n1.height - n2.height;
-			}
-		});
-		
+		PriorityQueue<Node> queue = new PriorityQueue<>((Node n1, Node n2) -> n1.height - n2.height);
 		int m = nums.length, n = nums[0].length;
 		boolean[][] visited = new boolean[m][n];
 		

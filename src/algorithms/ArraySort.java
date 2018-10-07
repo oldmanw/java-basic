@@ -74,6 +74,7 @@ public class ArraySort {
                     if (less(nums[j], nums[j - h])) swap(nums, j, j - h);
                 }
             }
+            h = (int) Math.floor(h / 3);
         }
     }
 
@@ -133,7 +134,7 @@ public class ArraySort {
      */
     public static void heapSort(Comparable[] nums) {
         int length = nums.length - 1;
-        //构造大顶堆
+        //从第一个非叶子节点开始构造大顶堆
         for (int k = (length - 1) / 2; k >= 0; k--) exchange(nums, k, length);
         while (length > 0) {
             swap(nums, 0, length--);
@@ -144,7 +145,7 @@ public class ArraySort {
     private static void exchange(Comparable[] nums, int k, int length) {
         while (2 * k + 1 <= length) {
             int j = 2 * k + 1;
-            //找到三个数中最大的数
+            //找到k,2k+1,2k+2三个数中最大的数
             if (j < length && less(nums[j], nums[j + 1])) j++;
             if (!less(nums[k], nums[j])) break;
             swap(nums, k, j);
@@ -209,7 +210,7 @@ public class ArraySort {
 
     public static void main(String[] args) {
         Integer[] nums = {6,5,7,3,2,1,4,9,12,2};
-        ArraySort.nonRecQuickSort(nums);
+        ArraySort.heapSort(nums);
         for (int num : nums) System.out.print(num + " ");
     }
 

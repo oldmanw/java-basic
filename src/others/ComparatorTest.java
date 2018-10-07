@@ -16,11 +16,8 @@ public class ComparatorTest {
 		list1.add(4);
 		list1.add(2);
 		List<Integer> list2 = new ArrayList<>(list1);
-		Collections.sort(list1, new Comparator<Integer>() {
-			@Override
-			public int compare(Integer i1, Integer i2) {
-				return i1 - i2;
-			}
+		Collections.sort(list1, (Integer i1, Integer i2) -> {
+			return i1 - i2;
 		});
 		Collections.sort(list2, new Comparator<Integer>() {
 			@Override

@@ -1,12 +1,23 @@
 package others;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class Test {
+
+    private static final int MAXIMUM_CAPACITY = 1 << 30;
+
+    private static int tableSizeFor(int c) {
+        int n = c - 1;
+        n |= n >>> 1;
+        n |= n >>> 2;
+        n |= n >>> 4;
+        n |= n >>> 8;
+        n |= n >>> 16;
+        return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
+    }
     
     public static void main(String[] args) {
         String id = UUID.randomUUID().toString().replaceAll("-", "");
@@ -23,6 +34,8 @@ public class Test {
         //降序排序
 //        Collections.sort(list, (Integer a, Integer b) -> b - a);
         System.out.println(list);
+
+        System.out.println(tableSizeFor(100));
     }
 
 }

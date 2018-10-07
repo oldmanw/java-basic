@@ -10,9 +10,9 @@ import annotations.Idiot;
 @Idiot
 public class PojoClass {
 
-    public String name = "hehe";
+    private String name = "hehe";
 
-    public int age = 10;
+    private int age = 10;
 
     private String sex = "male";
 
